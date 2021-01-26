@@ -6,7 +6,8 @@ const Register = ({setToken}) => {
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-
+    console.log('username: ', username);
+    console.log('password: ', password);
     const response = await fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/users/register', { // or use the `/users/login` route for login!
       method: 'POST',
       headers: {
@@ -19,8 +20,11 @@ const Register = ({setToken}) => {
         }
       })
     });
+    console.log('response: ', response);
     const {data} = await response.json();
+    console.log('{data}: ', {data});
     const token = data?.token;
+    console.log('token: ', token);
     setToken(token);
     setUsername('');
     setPassword('');
@@ -29,18 +33,8 @@ const Register = ({setToken}) => {
   return <>
     <h2>Register</h2>
     <form onSubmit={handleSubmit}>
-      <input 
-      type="text" value={username} 
-      onChange={(ev) => setUsername(ev.target.value)}placeholder="username"
-      required={ true }>
-      </input>
-      <input 
-      type="password" 
-      value={password} onChange={(ev) => setPassword(ev.target.value)}placeholder="password"
-      minLength={ 8 }
-      required={ true }>
-      
-      </input>
+      <input type="text" value={username} onChange={(ev) => setUsername(ev.target.value)}placeholder="username"></input>
+      <input type="password" value={password} onChange={(ev) => setPassword(ev.target.value)}placeholder="password"></input>
       <button type="submit">Register</button>
     </form>
   </>

@@ -7,10 +7,15 @@ import {
 } from './components';
 
 const App = () => {
+    
+    const [token, setToken] = useState('');
+    console.log('token: ', token);
 
     return <div>
-        <Login /> 
-        <Register /> 
+        <Login 
+            setToken={ setToken }/> 
+        <Register 
+            setToken={ setToken }/> 
     </div>
 }
 

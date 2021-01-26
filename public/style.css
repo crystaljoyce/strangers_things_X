@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Parisienne|Roboto|Playfair+Display|Roboto+Condensed&display=swap');
 
 * {
-  border: 0;
-  margin: 0;
-  padding: 0;
+  border: 10;
+  margin: 10;
+  padding: 10;
   box-sizing: border-box;
+  border-color: #444;
+  border-style: dotted;
+
 }
 
 body {
@@ -20,6 +23,7 @@ body {
   grid-template-columns: 320px 1fr;
   grid-template-rows: auto auto 1fr;
   grid-gap: 8px;
+
   
   height: 100%;
   width: 100%;
@@ -36,4 +40,16 @@ body {
   padding: 8px;
   text-align: center;
   color: white;
+}
+
+input {
+  border-color: #444;
+  border: 2px solid #0099CC;
+  border-style: dotted;
+}
+
+.btn:hover {
+  border: 2px solid #0099CC;
+  background: blue;
+  text-decoration: none;
 }
