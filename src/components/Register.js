@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { 
+  Route, 
+} from 'react-router-dom';
 
 const Register = ({setToken}) => {
   const [username, setUsername] = useState('');
@@ -31,12 +34,14 @@ const Register = ({setToken}) => {
   }
 
   return <>
+  <Route path="/Register">
     <h2>Register</h2>
     <form onSubmit={handleSubmit}>
       <input type="text" value={username} onChange={(ev) => setUsername(ev.target.value)}placeholder="username"></input>
       <input type="password" value={password} onChange={(ev) => setPassword(ev.target.value)}placeholder="password"></input>
       <button type="submit">Register</button>
     </form>
+    </Route>
   </>
 }
 

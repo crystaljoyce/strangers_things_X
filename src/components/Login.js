@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { 
+  Route, 
+} from 'react-router-dom';
 
 const Login = ({setToken}) => {
   const [username, setUsername] = useState('');
@@ -32,12 +35,14 @@ const Login = ({setToken}) => {
   }
 
   return <>
+  <Route path="/login">
     <h2 id="Login">Login</h2>
     <form onSubmit={handleSubmit}>
       <input type="text" value={username} onChange={(ev) => setUsername(ev.target.value)}placeholder="username"></input>
       <input type="password" value={password} onChange={(ev) => setPassword(ev.target.value)}placeholder="password"></input>
       <button type="submit">Login</button>
     </form>
+    </ Route> 
   </>
 }
 
