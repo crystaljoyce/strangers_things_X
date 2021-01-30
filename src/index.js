@@ -4,7 +4,8 @@ import {
     Login, 
     Register,
     Posts,
-    AddPost
+    AddPost,
+    AccountForm
 } from './components';
 import { 
     BrowserRouter as Router,
@@ -31,7 +32,7 @@ const App = () => {
                     'Authorization': `Bearer ${token}`
                 },
                 }),
-                const data = await response.json();
+                data = await response.json();
                 console.log(data.data)
                 setPosts(data.data)
                 
@@ -70,20 +71,46 @@ const App = () => {
            // },
             //body: JSON.stringify( { token } )
            // } ), [token]})
-    return (<div>
-        {
-        <Login 
-            setToken={ setToken }/> 
-}       <Register 
-            setToken={ setToken }/> 
-            { console.log()}
-        <Posts 
-            postsList={posts}/>  
+    return (<div>      
+        {user.username && <div>Hello {user.username}</div>}
+
+        <Route path="/login">
+            <AccountForm type={'login'} setToken={setToken} setUser={setUser}/>
+        </Route>
+        <Route path="/register">
+            <AccountForm type={'register'} setToken={setToken} setUser={setUser}/>
+        </Route>
+        <Route path="/Posts">
+            <Posts 
+                postsList={posts}/>  
+        </Route>
+        <Route path="/AddPost">
         <AddPost 
             setPosts={ setPosts } 
             posts={ posts }  />
+            {/* {
+                posts.map(post => <div key={post.id}>
+                    <h3>{post.title}</h3>
+                    <div>{post.body}</div>
+                </div>)
+            } */}
+        </Route>
         </div>)
 }
+
+// return <>
+// <h1>
+//   Strangers Things
+// </h1>
+// {user.username && <div>Hello {user.username}</div> }
+// <Route path="/login">
+//   <AccountForm type={'login'} setToken={setToken} setUser={setUser}/>
+// </Route>
+// <Route path="/register">
+//   <AccountForm type={'register'} setToken={setToken} setUser={setUser}/>
+// </Route>
+// </>
+
 
 ReactDOM.render (
     <Router>

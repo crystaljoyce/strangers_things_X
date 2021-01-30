@@ -14,14 +14,14 @@ const Posts = (  props ) => {
     return <>
     <Route path="/posts">
         <h2> 
-            Posts 
+            Treasure to Behold:  
             </h2>
             {
             postsList.map((post) => {
                 return <>  
                     <div key={post.id}>
                         <h3>{ post.title }</h3>
-                        <div>{ post.body }</div>
+                        <div>{ post.description }</div>
                     </div> 
                 </>
             })}
