@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { 
     Login, 
     Register,
-    Posts
+    Posts,
+    AddPost
 } from './components';
 import { 
     BrowserRouter as Router,
@@ -11,7 +12,9 @@ import {
     Link,
     Switch
 } from 'react-router-dom';
-import { index } from './api/index';
+import { fetchUsers } from './api/index';
+
+const BASE_URL = 'https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts'
 
 const App = () => {
     
@@ -20,9 +23,33 @@ const App = () => {
     console.log('token: ', token);
     const [ posts, setPosts ] = useState();
 
+    const fetchUser = async () => {
+            const response = await fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/users/me', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                }),
+                const data = await response.json();
+                console.log(data.data)
+                setPosts(data.data)
+                
+            }
+    
+    useEffect(() => {
+        fetchUser()
+        console.log('user: ', user)
+    }, [token])
+
     const fetchPosts = async () => { 
         
-        const response = await fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts');
+        const response = await fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        });
         const data = await response.json();
         console.log(data.data.posts)
         setPosts(data.data.posts)
@@ -45,10 +72,16 @@ const App = () => {
            // } ), [token]})
     return (<div>
         {
-        //<Login setToken={ setToken }/> 
-}       <Register setToken={ setToken }/> 
-        { console.log()}
-        <Posts postsList={posts}/>      
+        <Login 
+            setToken={ setToken }/> 
+}       <Register 
+            setToken={ setToken }/> 
+            { console.log()}
+        <Posts 
+            postsList={posts}/>  
+        <AddPost 
+            setPosts={ setPosts } 
+            posts={ posts }  />
         </div>)
 }
 

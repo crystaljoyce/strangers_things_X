@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { Route } from 'react-router-dom';
 
 
 
@@ -7,13 +8,14 @@ import ReactDOM from 'react-dom';
 const Posts = (  props ) => {
     const { postsList } = props; 
     if (!postsList) {
-        return <div> Not Here </div>
+        return <div> </div>
     }
 
     return <>
-        <h1> 
+    <Route path="/posts">
+        <h2> 
             Posts 
-            </h1>
+            </h2>
             {
             postsList.map((post) => {
                 return <>  
@@ -23,6 +25,7 @@ const Posts = (  props ) => {
                     </div> 
                 </>
             })}
+            </Route>
             </>
 
                 };
