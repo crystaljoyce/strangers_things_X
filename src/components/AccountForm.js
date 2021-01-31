@@ -4,7 +4,8 @@ import {
   Link,
   useHistory} from 'react-router-dom'; 
 
-const AccountForm = ({type, setToken, setUser}) => {
+const AccountForm = ({type, setToken, setUser }) => {
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const title = type === 'login' ? 'Login' : 'Register';
@@ -47,7 +48,7 @@ const AccountForm = ({type, setToken, setUser}) => {
       setUser(data);
       setUsername('');
       setPassword('');
-      history.pushState('/posts')
+      history.push('/posts')
     }
     }
 

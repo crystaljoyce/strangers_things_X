@@ -20,9 +20,10 @@ const BASE_URL = 'https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/
 const App = () => {
     
     const [token, setToken] = useState('');
-    const [ user, setUser] = useState('');
-    console.log('token: ', token);
-    const [ posts, setPosts ] = useState();
+    const [ user, setUser] = useState({});
+    // console.log('token: ', token);
+    const [ posts, setPosts ] = useState([]);
+
 
     const fetchUser = async () => {
             const response = await fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/users/me', {
@@ -31,10 +32,11 @@ const App = () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
+               
                 }),
                 data = await response.json();
                 console.log(data.data)
-                setPosts(data.data)
+                setUser(data?.data)
                 
             }
     
@@ -72,29 +74,46 @@ const App = () => {
             //body: JSON.stringify( { token } )
            // } ), [token]})
     return (<div>      
-        {user.username && <div>Hello {user.username}</div>}
+        {user?.username && <div>Hello {user?.username}</div>}
+        <div className="topnav">
+        <a className="active" href="/">Home</a>
+        <a href="/posts">Posts</a>
+        <a href="Profile">Profile</a>
+        <a href="/login">Login</a>
+    </div>
 
         <Route path="/login">
-            <AccountForm type={'login'} setToken={setToken} setUser={setUser}/>
+            <AccountForm 
+                type={'login'} 
+                setToken={setToken} 
+                setUser={setUser}
+                />
         </Route>
         <Route path="/register">
-            <AccountForm type={'register'} setToken={setToken} setUser={setUser}/>
+            <AccountForm 
+                type={'register'} 
+                setToken={setToken} 
+                setUser={setUser}/>
         </Route>
         <Route path="/Posts">
+            <AddPost 
+                setPosts={ setPosts } 
+                posts={ posts } 
+                setToken={setToken} 
+                token={token}/>
             <Posts 
                 postsList={posts}/>  
+
         </Route>
-        <Route path="/AddPost">
-        <AddPost 
-            setPosts={ setPosts } 
-            posts={ posts }  />
+        
+
             {/* {
                 posts.map(post => <div key={post.id}>
                     <h3>{post.title}</h3>
                     <div>{post.body}</div>
                 </div>)
             } */}
-        </Route>
+        
         </div>)
 }
 

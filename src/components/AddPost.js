@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { 
   Route, 
 } from 'react-router-dom';
+import { fetchUsers } from '../api';
 
-const AddPost = ( { posts, setPosts }) => {
+const AddPost = ( { posts, setPosts, token, username, password }) => {
 const [title, setTitle] = useState([]);
 const [description, setDescription] = useState([]);
+const [price, setPrice] = useState([]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('title, description: ', title, description)
-        //console.log('postId: ', postId)
+        console.log('title, description: ', token)
         const response = await fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts', {
           method: 'POST',
           headers: {
@@ -18,20 +19,23 @@ const [description, setDescription] = useState([]);
             'Authorization': `Bearer ${ token }`,
           },
           body: JSON.stringify({
+            post:{
             title,
             description,
+            price,
+            }
           })
         });
         const data = await response.json();
         console.log('data: ', data);
-        setPosts([data, posts]);
+        setPosts([data, ...posts]);
         setTitle('');
         setDescription('');
-
+        setPrice('');
     }
 
     return <> 
-    <Route path="/AddPost">
+    
     <h3> 
       Git rid of that trash: 
     </h3>
@@ -41,18 +45,25 @@ const [description, setDescription] = useState([]);
           placeholder="title"
           value={title}
           onChange={(event) => setTitle(event.target.value)}>
-          </input>
-          <input 
+      </input>
+      <input 
           type="text"
           placeholder="description"
           value={description}
           onChange={(event) => setDescription(event.target.value)}>
-          </input>
-          <button 
+      </input>
+      <input 
+          type="text"
+          placeholder="price"
+          value={price}
+          onChange={(event) => setPrice(event.target.value)}>
+      </input>
+      <button 
           type="submit"
-          className="btn">Buh Bye Trash</button>
+          className="btn">Buh Bye Trash
+      </button>
     </form>
-    </Route>
+    
     </>
 
 }
