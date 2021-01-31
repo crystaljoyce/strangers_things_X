@@ -21,8 +21,8 @@ const App = () => {
     
     const [token, setToken] = useState('');
     const [ user, setUser] = useState({});
-    // console.log('token: ', token);
     const [ posts, setPosts ] = useState([]);
+    const [postId, setPostId] = useState(null);
 
 
     const fetchUser = async () => {
@@ -35,8 +35,10 @@ const App = () => {
                
                 }),
                 data = await response.json();
-                console.log(data.data)
+                console.log('user: ',data?.data)
                 setUser(data?.data)
+                
+                
                 
             }
     
@@ -54,31 +56,26 @@ const App = () => {
             },
         });
         const data = await response.json();
-        console.log(data.data.posts)
+        console.log('posts in fetchPosts: ', data.data)
+        console.log('posts in FetchPosts: ',data.data.posts)
         setPosts(data.data.posts)
+        setPostId(data?.data?.posts?._id)
+        console.log('post location: ',data?.post?.location)
         return data.data.posts
     }
    
     useEffect(() => {
         fetchPosts()
-        console.log('posts: ',)
+        console.log('posts in useEffect: ',)
     }, []);
 
-   // useEffect(() => {  
-        //fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/users/me', {
-            //method: 'GET',
-            //headers: {
-              //'Content-Type': 'application/json',
-              //'Authorization': `Bearer ${ token }`
-           // },
-            //body: JSON.stringify( { token } )
-           // } ), [token]})
     return (<div>      
-        {user?.username && <div>Hello {user?.username}</div>}
+        {user?.username && <div>Hello, {user?.username}</div>}
         <div className="topnav">
         <a className="active" href="/">Home</a>
         <a href="/posts">Posts</a>
-        <a href="Profile">Profile</a>
+        <a href="/profile">Profile</a>
+        <a href="/messages">Messages</a>
         <a href="/login">Login</a>
     </div>
 

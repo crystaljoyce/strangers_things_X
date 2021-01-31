@@ -49,6 +49,7 @@ const AccountForm = ({type, setToken, setUser }) => {
       setUsername('');
       setPassword('');
       history.push('/posts')
+      console.log('is Author in Posts Comp', data?.posts)
     }
     }
 
