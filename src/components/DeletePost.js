@@ -3,11 +3,7 @@
 
 const Delete = ( { posts, setPosts, title, setTitle, description, setDescription } ) => {
     
-    const handleDelete = async (event) => {
-        event.preventDefault();
-        console.log('title, description: ', title, description);
-        console.log(token); 
-    }
+
     
     return <> 
     <h3> 

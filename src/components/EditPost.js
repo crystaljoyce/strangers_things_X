@@ -5,46 +5,13 @@ import {
 import { fetchUsers } from '../api';
 import Posts from './Posts';
 
-const AddPost = ( { postList, posts, setPosts, token, username, password }) => {
-const [title, setTitle] = useState([]);
-const [description, setDescription] = useState([]);
-const [price, setPrice] = useState([]);
-const [location, setLocation] = useState([]);
-const [willDeliver, setWillDeliver] = useState([]);
+const EditPost = ({ postList, title, description, price, location, willDeliver }) => {
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        console.log('title, description: ', token)
-        const response = await fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts', {
-          method: 'POST',
-          headers: {
-            'Content-type': 'Application/json',
-            'Authorization': `Bearer ${ token }`,
-          },
-          body: JSON.stringify({
-            post:{
-            title,
-            description,
-            price,
-            location, 
-            willDeliver,
-            }
-          })
-        });
-        const data = await response.json();
-        console.log('data: ', data);
-        setPosts([data, ...posts]);
-        setTitle('');
-        setDescription('');
-        setPrice('');
-        setLocation('');
-        setWillDeliver('');
-    }
 
     return <> 
-    
+      
     <h3> 
-      Git rid of that trash: 
+      Update your trash: 
     </h3>
     <form onSubmit={handleSubmit}>
       <input 
@@ -84,7 +51,7 @@ const [willDeliver, setWillDeliver] = useState([]);
     </form>
     
     </>
+    
+  }
 
-}
-
-export default AddPost;
+  export default EditPost; 

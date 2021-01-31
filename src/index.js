@@ -5,7 +5,8 @@ import {
     Register,
     Posts,
     AddPost,
-    AccountForm
+    AccountForm,
+    Messages,
 } from './components';
 import { 
     BrowserRouter as Router,
@@ -56,18 +57,53 @@ const App = () => {
             },
         });
         const data = await response.json();
-        console.log('posts in fetchPosts: ', data.data)
-        console.log('posts in FetchPosts: ',data.data.posts)
+        console.log('posts in fetchPosts: ', data.data.posts)
         setPosts(data.data.posts)
         setPostId(data?.data?.posts?._id)
-        console.log('post location: ',data?.post?.location)
         return data.data.posts
     }
    
     useEffect(() => {
         fetchPosts()
-        console.log('posts in useEffect: ',)
     }, []);
+
+
+
+    const handleEdit = async (event) => {
+        event.preventDefault(); 
+        const response = await fetch (`https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts${postId}`,{
+        method: 'PATCH', 
+        headers: { 
+          'Content-type': "Application/json",
+        },
+        body: { 
+          title, 
+          description,
+          price, 
+          location,
+          willDeliver,
+        }
+      })
+      const data = await response.json(); 
+      console.log('data for update: ', data)
+      if ( data && data.title) {
+        const newPosts = postsList.map( post => {
+          if(post._id === postId) {
+            return data;
+          } else {
+            return post; 
+          }
+        });
+        setPosts(newPosts);
+      setTitle('');
+      setDescription('');
+      setPrice('');
+      setLocation('');
+      setPostId(null);
+      setWillDeliver('');
+    
+      }
+      }
 
     return (<div>      
         {user?.username && <div>Hello, {user?.username}</div>}
@@ -99,34 +135,18 @@ const App = () => {
                 setToken={setToken} 
                 token={token}/>
             <Posts 
-                postsList={posts}/>  
+                postsList={posts}/>
+        <Route path ="/Messages">
+                <Messages 
+                    token={token}/> 
+        </Route>
+                
 
         </Route>
         
-
-            {/* {
-                posts.map(post => <div key={post.id}>
-                    <h3>{post.title}</h3>
-                    <div>{post.body}</div>
-                </div>)
-            } */}
-        
         </div>)
+
 }
-
-// return <>
-// <h1>
-//   Strangers Things
-// </h1>
-// {user.username && <div>Hello {user.username}</div> }
-// <Route path="/login">
-//   <AccountForm type={'login'} setToken={setToken} setUser={setUser}/>
-// </Route>
-// <Route path="/register">
-//   <AccountForm type={'register'} setToken={setToken} setUser={setUser}/>
-// </Route>
-// </>
-
 
 ReactDOM.render (
     <Router>
