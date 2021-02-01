@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { 
-    Login, 
-    Register,
     Posts,
     AddPost,
     AccountForm,
     Messages,
+    EditPost, 
 } from './components';
 import { 
     BrowserRouter as Router,
@@ -57,8 +56,8 @@ const App = () => {
             },
         });
         const data = await response.json();
-        console.log('posts in fetchPosts: ', data.data.posts)
         setPosts(data.data.posts)
+        console.log('posts: ',data.data.posts)
         setPostId(data?.data?.posts?._id)
         return data.data.posts
     }
@@ -106,14 +105,14 @@ const App = () => {
       }
 
     return (<div>      
-        {user?.username && <div>Hello, {user?.username}</div>}
-        <div className="topnav">
-        <a className="active" href="/">Home</a>
-        <a href="/posts">Posts</a>
-        <a href="/profile">Profile</a>
-        <a href="/messages">Messages</a>
-        <a href="/login">Login</a>
-    </div>
+            {user?.username && <div>Hello, {user?.username}</div>}
+            <div className="topnav">
+            <Link to="/">Home</Link>
+            <Link to="/posts">Posts</Link>
+            <Link to="/profile">Profile</Link>
+            <Link to="/messages">Messages</Link>
+            <Link to="/login">Login</Link>
+            </div>
 
         <Route path="/login">
             <AccountForm 
@@ -136,14 +135,14 @@ const App = () => {
                 token={token}/>
             <Posts 
                 postsList={posts}/>
-        <Route path ="/Messages">
+        </Route>
+        <Route path ="/messages">
                 <Messages 
-                    token={token}/> 
-        </Route>
-                
-
-        </Route>
-        
+                    posts={posts}
+                    setPosts={setPosts}
+                    token={token}
+                    setToken={setToken}/> 
+        </Route>        
         </div>)
 
 }

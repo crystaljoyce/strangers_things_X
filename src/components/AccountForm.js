@@ -4,7 +4,7 @@ import {
   Link,
   useHistory} from 'react-router-dom'; 
 
-const AccountForm = ({type, setToken, setUser }) => {
+const AccountForm = ({type, setToken, setUser}) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -49,7 +49,6 @@ const AccountForm = ({type, setToken, setUser }) => {
       setUsername('');
       setPassword('');
       history.push('/posts')
-      console.log('is Author in Posts Comp', data?.posts.isAuthor)
     }
     }
 

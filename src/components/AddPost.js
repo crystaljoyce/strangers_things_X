@@ -5,7 +5,7 @@ import {
 import { fetchUsers } from '../api';
 import Posts from './Posts';
 
-const AddPost = ( { postList, posts, setPosts, token, username, password }) => {
+const AddPost = ({ postList, posts, setPosts, token, username, password }) => {
 const [title, setTitle] = useState([]);
 const [description, setDescription] = useState([]);
 const [price, setPrice] = useState([]);
@@ -43,9 +43,9 @@ const [willDeliver, setWillDeliver] = useState([]);
 
     return <> 
     
-    <h3> 
-      Git rid of that trash: 
-    </h3>
+    <h2> 
+      Make like Elsa and let it go: 
+    </h2>
     <form onSubmit={handleSubmit}>
       <input 
           type="text"
