@@ -11,25 +11,28 @@ import EditPost from './EditPost';
 
 const Posts = ( props ) => {
     const [ setPostId ] = useState(null);
-    const { postsList, postId, posts, setPosts } = props; 
+    const { postsList, postId, posts, setPosts, token, setToken } = props; 
     
 
     const handleDelete = async (postIdToDelete) => {
         console.log('postIdToDelete', postIdToDelete);
         const response = await fetch (`https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts/${postIdToDelete}`,{
             method: "DELETE",
-
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }
         });
         const data = await response.json();
         console.log("data: ", data);
         if (data) {
-            const newPosts = postsList.filter(post => post.id !== postIdToDelete);
+            const newPosts = postsList.filter(post => post._id !== postIdToDelete);
             setPosts(newPosts)
         }
     }
 
     const handleEdit = async (event) => {
-        event.preventDefault(); 
+        //event.preventDefault(); 
         const response = await fetch (`https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts${postId}`,{
         method: 'PATCH', 
         headers: { 
@@ -79,22 +82,22 @@ const Posts = ( props ) => {
             {
             postsList.map((post, index) => {
                 return <div key={index}>
-                        <h3>{ post.title } </h3> <h4>Price: {post.price} </h4>
-                        <h4> Offered by user: {post.author.username}</h4>
+                        <h3>{ post?.title } </h3> <h4>Price: {post?.price} </h4>
+                        <h4> Offered by user: {post?.author?.username}</h4>
                         <div>{ post.description }</div>
                         <div>Delivery Available: {post.willDeliver === true ? 'Yes' : 'No'}</div>
                         <div> {post.location === '[On Request]' ? '' : post.location}  </div>
                         <div> {post.messages}</div>
                         <div>
-                        {post.author.username === 'MotherMonster'
+                        {post?.author?.username === 'MotherMonster'
                         ? <button
                         type='button'
                         className='btn'
-                        onClick={() => handleDelete()}> Delete </button>
+                        onClick={() => handleDelete(post._id)}> Delete </button>
                         : '' }
                         </div>
                         <div>
-                        {post.author.username === 'MotherMonster'
+                        {post?.author?.username === 'MotherMonster'
                         ? <button
                         type='button'
                         className='btn'

@@ -132,9 +132,11 @@ const App = () => {
                 setPosts={ setPosts } 
                 posts={ posts } 
                 setToken={setToken} 
-                token={token}/>
+                token={token}/><hr/>
             <Posts 
-                postsList={posts}/>
+                postsList={posts}
+                token={token}
+                setPosts={setPosts}/>
         </Route>
         <Route path ="/messages">
                 <Messages 

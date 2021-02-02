@@ -32,8 +32,9 @@ const [willDeliver, setWillDeliver] = useState([]);
           })
         });
         const data = await response.json();
+
         console.log('data: ', data);
-        setPosts([data, ...posts]);
+        setPosts([...posts, data?.data?.post]);
         setTitle('');
         setDescription('');
         setPrice('');
