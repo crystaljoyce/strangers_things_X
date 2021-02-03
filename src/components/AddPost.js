@@ -14,7 +14,7 @@ const [willDeliver, setWillDeliver] = useState([]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('title, description: ', token)
+        console.log('title, description: ', title, description)
         const response = await fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts', {
           method: 'POST',
           headers: {

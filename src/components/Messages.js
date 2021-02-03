@@ -25,7 +25,7 @@ const Messages = ( props ) => {
             }),
             data = await response.json();
             console.log('user posts: ',data?.data?.posts)
-            console.log("user messages : ", data?.data.messages)
+            console.log("user messages : ", data?.data?.messages)
             setMessages(data?.data?.messages)
             
 
@@ -71,7 +71,7 @@ const response = () => {
              <button 
                 type="button"
                 className="btn"
-                onClick={()=> { handleSubmit() }}> Respond</button></div>
+                onClick={()=> { handleSubmit() }}> </button></div>
          })}</div>
          </div>
             };

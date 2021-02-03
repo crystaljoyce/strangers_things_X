@@ -53,10 +53,20 @@ input {
   border-style: solid;
 }
 
+.btn {
+  border: 2px solid #9e2f79;
+  background: #444;
+  text-decoration: none;
+  width: 85px;
+  height: 50px;
+}
+
 .btn:hover {
   border: 2px solid #9e2f79;
   background: #9e2f79;
   text-decoration: none;
+  width: 85px;
+  height: 50px;
 }
 
 .topnav {

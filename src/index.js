@@ -23,7 +23,7 @@ const App = () => {
     const [ user, setUser] = useState({});
     const [ posts, setPosts ] = useState([]);
     const [postId, setPostId] = useState(null);
-
+    const [ content, setContent ] = useState([]);
 
     const fetchUser = async () => {
             const response = await fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/users/me', {
@@ -136,14 +136,18 @@ const App = () => {
             <Posts 
                 postsList={posts}
                 token={token}
-                setPosts={setPosts}/>
+                setPosts={setPosts}
+                content={content}
+                setContent={setContent}/>
+           
         </Route>
         <Route path ="/messages">
-                <Messages 
-                    posts={posts}
-                    setPosts={setPosts}
-                    token={token}
-                    setToken={setToken}/> 
+            <Messages 
+                posts={posts}
+                setPosts={setPosts}
+                token={token}
+                setToken={setToken}
+                /> 
         </Route>        
         </div>)
 
