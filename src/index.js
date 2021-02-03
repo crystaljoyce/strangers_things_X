@@ -14,6 +14,8 @@ import {
     Switch
 } from 'react-router-dom';
 import { fetchUsers } from './api/index';
+import './bootstrap.css'
+import './style.css'
 
 const BASE_URL = 'https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts'
 

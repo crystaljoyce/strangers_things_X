@@ -63,15 +63,14 @@ const response = () => {
     <input type='text' placeholder='content' value={content} onChange={(event) => setContent(event.target.value)}> </input>
 }
 
-    return <div>
-         <h2> Messages: </h2>
+    return <div><br/> 
+         <h2> Messages: </h2> <br/> 
          <div>{messages.map((message, idx) => {
              return <div key={idx}> 
-             <h3>{message.content} </h3> 
-             <button 
-                type="button"
-                className="btn"
-                onClick={()=> { handleSubmit() }}> </button></div>
+            <h3> From user: { message.fromUser.username} </h3> 
+            <h3>Title: {message.post.title} </h3> 
+             <h3>{message.content} </h3> <hr/> <br/> 
+             </div>
          })}</div>
          </div>
             };

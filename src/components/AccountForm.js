@@ -9,7 +9,7 @@ const AccountForm = ({type, setToken, setUser}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const title = type === 'login' ? 'Login' : 'Register';
-  const oppositeTitle = type === 'login' ? 'Register' : 'Login';
+  const oppositeTitle = type === 'login' ? 'You haven\'t signed up yet? Click here, boo. ' : 'Login';
   const oppositeType = type === 'login' ? 'register' : 'login';
   const history = useHistory();
 
@@ -55,9 +55,29 @@ const AccountForm = ({type, setToken, setUser}) => {
   return <>
     <h2>{title}</h2>
     <form onSubmit={handleSubmit}>
-      <input type="text" value={username} onChange={(ev) => setUsername(ev.target.value)}placeholder="username"></input>
-      <input type="password" value={password} onChange={(ev) => setPassword(ev.target.value)}placeholder="password"></input>
+    <div class="row">
+  <div class="col">
+      <input 
+      type="text" 
+      class="form-control" 
+      placeholder="user name" 
+      aria-label="user name"
+      value={username} 
+      onChange={(ev) => setUsername(ev.target.value)}placeholder="username"
+      required={true}
+      minLength={5}></input>
+      </div>
+      <div class="col">
+      <input 
+      type="password" 
+      class="form-control" 
+      placeholder="password" aria-label="password"
+      value={password} 
+      onChange={(ev) => setPassword(ev.target.value)}placeholder="password"
+      required={true}
+      minLength={8}></input>
       <button type="submit">{title}</button>
+      </div> </div> 
     </form>    
     <Link to={`/${oppositeType}`}>{oppositeTitle}</Link>
   </>

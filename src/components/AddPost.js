@@ -72,9 +72,12 @@ const [willDeliver, setWillDeliver] = useState([]);
           value={location}
           onChange={(event) => setLocation(event.target.value)}>
       </input>
+      <div> Can you deliver? (check the box for yes) </div>
+
       <input 
-          type="toggle"
+          type="checkbox"
           placeholder="willDeliver"
+          name="Yes"
           value={willDeliver}
           onChange={(event) => setWillDeliver(event.target.value)}>
       </input>

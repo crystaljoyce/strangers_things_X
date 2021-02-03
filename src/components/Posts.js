@@ -99,10 +99,10 @@ const Posts = ( props ) => {
             return <div key={index}>
               <h3>{ post?.title } </h3> <h4>Price: {post?.price} </h4>
               <h4> Offered by user: {post?.author?.username}</h4>
-              <div>{ post.description }</div>
-              <div>Delivery Available: {post.willDeliver === true ? 'Yes' : 'No'}</div>
-              <div> {post.location === '[On Request]' ? '' : post.location}  </div>
-              <div> {post.messages}</div>
+              <div>{ post?.description }</div>
+              <div>Delivery Available: {post?.willDeliver === true ? 'Yes' : 'No'}</div>
+              <div> {post?.location === '[On Request]' ? '' : post?.location}  </div>
+              <div> {post?.messages}</div>
               <div>
               {post?.author?.username === 'MotherMonster'
               ? <button
@@ -122,7 +122,7 @@ const Posts = ( props ) => {
               <button
               type="button"
               className="btn"
-              onClick={() => handleSubmit(post._id)}> Respond </button>
+              onClick={() => handleSubmit(post?._id)}> Respond </button>
               { status = "active" 
               ?
               <form> 
