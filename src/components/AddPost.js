@@ -6,11 +6,12 @@ import { fetchUsers } from '../api';
 import Posts from './Posts';
 
 const AddPost = ({ postList, posts, setPosts, token, username, password }) => {
-const [title, setTitle] = useState([]);
-const [description, setDescription] = useState([]);
-const [price, setPrice] = useState([]);
-const [location, setLocation] = useState([]);
-const [willDeliver, setWillDeliver] = useState([]);
+const [title, setTitle] = useState('');
+const [description, setDescription] = useState('');
+const [price, setPrice] = useState('');
+const [location, setLocation] = useState('');
+const [willDeliver, setWillDeliver] = useState(false);
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -26,7 +27,7 @@ const [willDeliver, setWillDeliver] = useState([]);
             title,
             description,
             price,
-            location, 
+            location,
             willDeliver,
             }
           })
@@ -39,13 +40,13 @@ const [willDeliver, setWillDeliver] = useState([]);
         setDescription('');
         setPrice('');
         setLocation('');
-        setWillDeliver('');
+        setWillDeliver(false);
     }
 
     return <> 
     
     <h2> 
-      Make like Elsa and let it go: 
+      Let it go: 
     </h2>
     <form onSubmit={handleSubmit}>
       <input 
@@ -72,18 +73,19 @@ const [willDeliver, setWillDeliver] = useState([]);
           value={location}
           onChange={(event) => setLocation(event.target.value)}>
       </input>
-      <div> Can you deliver? (check the box for yes) </div>
-
+      <div> 
+      <label for="willDeliver">Check the box if you can deliver this item. </label>
       <input 
           type="checkbox"
+          id="willDeliver"
           placeholder="willDeliver"
-          name="Yes"
-          value={willDeliver}
-          onChange={(event) => setWillDeliver(event.target.value)}>
-      </input>
+          checked={willDeliver}
+          onChange={(event) => setWillDeliver(event.target.checked)}>
+      </input> 
+      </div>
       <button 
           type="submit"
-          className="btn">Buh Bye Trash
+          className="btn">List it!
       </button>
     </form>
     

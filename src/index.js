@@ -6,6 +6,8 @@ import {
     AccountForm,
     Messages,
     EditPost, 
+    Search,
+    PostView,
 } from './components';
 import { 
     BrowserRouter as Router,
@@ -14,8 +16,8 @@ import {
     Switch
 } from 'react-router-dom';
 import { fetchUsers } from './api/index';
-import './bootstrap.css'
-import './style.css'
+// import './bootstrap.css'
+// import './style.css'
 
 const BASE_URL = 'https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts'
 
@@ -54,7 +56,7 @@ const App = () => {
         const response = await fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts', {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': token ? `Bearer ${token}` : undefined
             },
         });
         const data = await response.json();
@@ -107,14 +109,14 @@ const App = () => {
       }
 
     return (<div>      
-            {user?.username && <div>Hello, {user?.username}</div>}
-            <div className="topnav">
+            {user?.username && <div>Hello, {user?.username}! </div>}
+            <nav className="topnav" role="navigation">
             <Link to="/">Home</Link>
             <Link to="/posts">Posts</Link>
             <Link to="/profile">Profile</Link>
             <Link to="/messages">Messages</Link>
             <Link to="/login">Login</Link>
-            </div>
+            </nav>
 
         <Route path="/login">
             <AccountForm 
@@ -135,13 +137,20 @@ const App = () => {
                 posts={ posts } 
                 setToken={setToken} 
                 token={token}/><hr/>
+            <Search 
+                posts={posts}/>
             <Posts 
                 postsList={posts}
                 token={token}
                 setPosts={setPosts}
                 content={content}
-                setContent={setContent}/>
+                setContent={setContent}
+                user={user}/>
            
+        </Route>
+        <Route path="/posts/:id">
+            <PostView 
+                posts={posts}/> 
         </Route>
         <Route path ="/messages">
             <Messages 

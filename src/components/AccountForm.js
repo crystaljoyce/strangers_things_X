@@ -9,8 +9,8 @@ const AccountForm = ({type, setToken, setUser}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const title = type === 'login' ? 'Login' : 'Register';
-  const oppositeTitle = type === 'login' ? 'You haven\'t signed up yet? Click here, boo. ' : 'Login';
-  const oppositeType = type === 'login' ? 'register' : 'login';
+  const oppositeTitle = type === 'login' ? 'You can register by clicking here.  ' : 'Login';
+  const oppositeType = type === 'login' ? 'Register' : 'Login';
   const history = useHistory();
 
 
@@ -55,11 +55,11 @@ const AccountForm = ({type, setToken, setUser}) => {
   return <>
     <h2>{title}</h2>
     <form onSubmit={handleSubmit}>
-    <div class="row">
-  <div class="col">
+    <div className="row">
+  <div className="col">
       <input 
       type="text" 
-      class="form-control" 
+      className="form-control" 
       placeholder="user name" 
       aria-label="user name"
       value={username} 
@@ -67,10 +67,10 @@ const AccountForm = ({type, setToken, setUser}) => {
       required={true}
       minLength={5}></input>
       </div>
-      <div class="col">
+      <div className="col">
       <input 
       type="password" 
-      class="form-control" 
+      className="form-control" 
       placeholder="password" aria-label="password"
       value={password} 
       onChange={(ev) => setPassword(ev.target.value)}placeholder="password"

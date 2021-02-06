@@ -5,14 +5,15 @@ import {
     Link,
     } from 'react-router-dom'; 
 import EditPost from './EditPost';
-import { MessagesSend } from './MessagesSend'
+import { MessagesSend } from './MessagesSend';
+import { user } from './index'
 
 
 
 
 const Posts = ( props ) => {
     const [ setPostId ] = useState(null);
-    const { postsList, postId, posts, setPosts, token, setToken, content, setContent } = props; 
+    const { postsList, postId, posts, setPosts, token, setToken, content, setContent, user } = props; 
     
 
     const handleDelete = async (postIdToDelete) => {
@@ -32,42 +33,7 @@ const Posts = ( props ) => {
         }
     }
 
-    const handleEdit = async (event) => {
-        console.log(event)
-        event.preventDefault(); 
-        const response = await fetch (`https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts/${post._id}`,{
-        method: 'PATCH', 
-        headers: { 
-          'Content-type': "Application/json",
-        },
-        body: { 
-          title, 
-          description,
-          price, 
-          location,
-          willDeliver,
-        }
-      })
-      const data = await response.json(); 
-      console.log('data for update: ', data)
-      if ( data && data.title) {
-        const newPosts = postsList.map( post => {
-          if(post._id === postId) {
-            return data;
-          } else {
-            return post; 
-          }
-        });
-        setPosts(newPosts);
-      setTitle('');
-      setDescription('');
-      setPrice('');
-      setLocation('');
-      setPostId(null);
-      setWillDeliver('');
-    
-      }
-      }
+
   const handleSubmit = async (postIdToRespond) => {
   console.log(postIdToRespond)
   //event.preventDefault();
@@ -93,18 +59,20 @@ const Posts = ( props ) => {
         return <div> </div>
     }
     return <>
-        <h2> Treasures to Behold:  </h2>
+        <h2> Feast your eyes:   </h2>
           {
             postsList.map((post, index) => {
             return <div key={index}>
-              <h3>{ post?.title } </h3> <h4>Price: {post?.price} </h4>
+              <div className="card" >
+              <div className="card-body">
+              <h3 className="card-title">{ post?.title } </h3> <h4>Price: {post?.price} </h4>
               <h4> Offered by user: {post?.author?.username}</h4>
               <div>{ post?.description }</div>
               <div>Delivery Available: {post?.willDeliver === true ? 'Yes' : 'No'}</div>
               <div> {post?.location === '[On Request]' ? '' : post?.location}  </div>
               <div> {post?.messages}</div>
               <div>
-              {post?.author?.username === 'MotherMonster'
+              {post?.author.username === user?.username
               ? <button
               type='button'
               className='btn'
@@ -112,13 +80,14 @@ const Posts = ( props ) => {
               : '' }
               </div>
               <div>
-              {post?.author?.username === 'MotherMonster'
+              {post?.author?.username === user?.username
               ? <button
               type='button'
               className='btn'
-              onClick={() => handleEdit()}> Edit </button>
+              onClick={() => handleEdit(post._id)}> Edit </button>
               : '' }
               </div>
+              
               <button
               type="button"
               className="btn"
@@ -126,10 +95,12 @@ const Posts = ( props ) => {
               { status = "active" 
               ?
               <form> 
-                <input onChange={(ev) => setContent(ev.target.value)}> 
+                <input placeholder="type your message to the seller here ... "onChange={(ev) => setContent(ev.target.value)}> 
                 </input>
               </form> 
               : ''} 
+              </div>
+              </div>
                 </div> 
                 })
             }
