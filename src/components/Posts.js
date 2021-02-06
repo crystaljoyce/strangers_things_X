@@ -87,7 +87,7 @@ const Posts = ( props ) => {
               onClick={() => handleEdit(post._id)}> Edit </button>
               : '' }
               </div>
-              
+              <div className="input-group">
               <button
               type="button"
               className="btn"
@@ -95,10 +95,16 @@ const Posts = ( props ) => {
               { status = "active" 
               ?
               <form> 
-                <input placeholder="type your message to the seller here ... "onChange={(ev) => setContent(ev.target.value)}> 
-                </input>
+                
+                <textarea 
+                class="form-control" 
+                aria-label="With textarea"
+                placeholder="type your message to the seller here ... "onChange={(ev) => setContent(ev.target.value)}> 
+                </textarea>
+                
               </form> 
               : ''} 
+              </div>
               </div>
               </div>
                 </div> 
