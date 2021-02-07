@@ -48,7 +48,7 @@ const [willDeliver, setWillDeliver] = useState(false);
     <h2> 
       List an item for sale: 
     </h2>
-    <div class="input-group mb-3">
+    <div className="input-group mb-3">
     <form onSubmit={handleSubmit}>
       <input 
           type="text"
@@ -65,8 +65,8 @@ const [willDeliver, setWillDeliver] = useState(false);
           value={description}
           onChange={(event) => setDescription(event.target.value)}>
       </textarea> <br></br>
-      <div class="input-group mb-3">
-    <span class="input-group-text">$</span>
+      <div className="input-group mb-3">
+    <span className="input-group-text">$</span>
       <input 
           type="text"
           placeholder="price"
@@ -75,7 +75,7 @@ const [willDeliver, setWillDeliver] = useState(false);
           value={price}
           onChange={(event) => setPrice(event.target.value)}>
       </input>
-      <span class="input-group-text">.00</span>
+      <span className="input-group-text">.00</span>
 </div>
       <input 
           type="text"

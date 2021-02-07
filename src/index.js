@@ -8,6 +8,7 @@ import {
     EditPost, 
     Search,
     PostView,
+    Profile,
 } from './components';
 import { 
     BrowserRouter as Router,
@@ -167,7 +168,14 @@ const App = () => {
                 setToken={setToken}
                 setUser={setUser}
                 /> 
-        </Route>        
+        </Route>  
+        <Route path='/profile'>
+            <Profile    
+                user={user}
+                setUser={setUser}
+                token={token}
+                />
+            </Route>      
         </div>)
 
 }
