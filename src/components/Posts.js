@@ -65,7 +65,7 @@ const Posts = ( props ) => {
             return <div key={index}>
               <div className="card" >
               <div className="card-body">
-              <h3 className="card-title">{ post?.title } </h3> <h4>Price: {post?.price} </h4>
+              <Link to="/posts/:id"/><h3 className="card-title">{ post?.title } </h3> <h4>Price: {post?.price} </h4>
               <h4> Offered by user: {post?.author?.username}</h4>
               <div>{ post?.description }</div>
               <div>Delivery Available: {post?.willDeliver === true ? 'Yes' : 'No'}</div>
@@ -97,7 +97,7 @@ const Posts = ( props ) => {
               <form> 
                 
                 <textarea 
-                class="form-control" 
+                className="form-control" 
                 aria-label="With textarea"
                 placeholder="type your message to the seller here ... "onChange={(ev) => setContent(ev.target.value)}> 
                 </textarea>

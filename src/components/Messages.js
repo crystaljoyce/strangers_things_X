@@ -11,7 +11,7 @@ import Posts from './Posts';
 
 const Messages = ( props ) => {
 
-    const { token, setUser, posts, user, content, setContent } = props; 
+    const { token, setUser, posts, user, content, setContent, currUser } = props; 
     const [ messages, setMessages ] = useState([]);
 
     const fetchUser = async () => {
@@ -28,13 +28,16 @@ const Messages = ( props ) => {
             console.log("user messages : ", data?.data?.messages)
             setMessages(data?.data?.messages)
             
-
+            const currUser = data?.data.username 
+            console.log('currUser: ',data.data.username)
+            setUser(data?.data)
             
         }
 
 useEffect(() => {
     fetchUser()
     console.log('user posts: ', user)
+    
 }, [token])
 
 const handleSubmit = async (event) => {
@@ -59,20 +62,23 @@ const handleSubmit = async (event) => {
     
 }
 
-const response = () => {
-    <input type='text' placeholder='content' value={content} onChange={(event) => setContent(event.target.value)}> </input>
-}
+// const response = () => {
+//     <input type='text' placeholder='content' value={content} onChange={(event) => setContent(event.target.value)}> </input>
+// }
 
     return <> 
     <div><br/> 
-         <h2> Messages sent to you: </h2> <br/> 
+         
          <div> {messages?.map((message, idx) => {
              return <>
-                    <div key={idx}> 
-                    
-                        <h3> From user: { message.fromUser.username === user?.username ? message.fromUser.username : ''} </h3> 
+                    <div key={idx}> <> <div> 
+                        { message?.fromUser?.username 
+                        ? <div> <br/> <h3> From user: { message.fromUser.username } </h3> 
                         <h4>Title: {message.post.title} </h4> 
-                        <p>{message.content} </p> <hr/> <br/> 
+                        <p>{message.content} </p> <hr/> <br/> </div>
+                        :  '' }  
+                        </div>
+                        </>
                     </div>
              </>
          })}</div>

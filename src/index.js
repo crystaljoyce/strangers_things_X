@@ -158,6 +158,7 @@ const App = () => {
                 setPosts={setPosts}
                 token={token}
                 setToken={setToken}
+                setUser={setUser}
                 /> 
         </Route>        
         </div>)

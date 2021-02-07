@@ -1,5 +1,6 @@
 import React from 'react'; 
 import {useParams} from 'react-router-dom';
+import PostSingle from './PostSingle';
 
 
 const PostView = ( props ) => {
@@ -10,7 +11,7 @@ const PostView = ( props ) => {
     const post = posts.find(posty => posty.id === Number(id))
     console.log('post: ', post)
     
-    return post ? <Posts post={post}/> : ''
+    return post ? <PostSingle post={post}/> : ''
 }
 
 export default PostView; 
