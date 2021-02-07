@@ -46,30 +46,41 @@ const [willDeliver, setWillDeliver] = useState(false);
     return <> 
     
     <h2> 
-      Let it go: 
+      List an item for sale: 
     </h2>
+    <div class="input-group mb-3">
     <form onSubmit={handleSubmit}>
       <input 
           type="text"
           placeholder="title"
+          className="form-control"
           value={title}
           onChange={(event) => setTitle(event.target.value)}>
       </input>
-      <input 
+      <textarea 
           type="text"
           placeholder="description"
+          className="form-control"
+          aria-label="With textarea"
           value={description}
           onChange={(event) => setDescription(event.target.value)}>
-      </input> <br></br>
+      </textarea> <br></br>
+      <div class="input-group mb-3">
+    <span class="input-group-text">$</span>
       <input 
           type="text"
           placeholder="price"
+          aria-label="Amount (to the nearest dollar)"
+          className="form-control"
           value={price}
           onChange={(event) => setPrice(event.target.value)}>
       </input>
+      <span class="input-group-text">.00</span>
+</div>
       <input 
           type="text"
           placeholder="Location"
+          className="form-control"
           value={location}
           onChange={(event) => setLocation(event.target.value)}>
       </input>
@@ -78,6 +89,8 @@ const [willDeliver, setWillDeliver] = useState(false);
       <input 
           type="checkbox"
           id="willDeliver"
+          className="form-check-input"
+          aria-label="Checkbox for following text input"
           placeholder="willDeliver"
           checked={willDeliver}
           onChange={(event) => setWillDeliver(event.target.checked)}>
@@ -85,9 +98,10 @@ const [willDeliver, setWillDeliver] = useState(false);
       </div>
       <button 
           type="submit"
-          className="btn">List it!
+          className="btn btn-outline-primary">List it!
       </button>
     </form>
+    </div>
     
     </>
 
