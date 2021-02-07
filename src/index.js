@@ -140,11 +140,14 @@ const App = () => {
                 setUser={setUser}/>
         </Route>
         <Route path="/Posts">
-            <AddPost 
+            { token 
+            ?  <div> <AddPost 
                 setPosts={ setPosts } 
                 posts={ posts } 
                 setToken={setToken} 
                 token={token}/><hr/>
+                </div>
+            : '' } 
             <Search 
                 posts={posts}/>
             <Posts 
@@ -161,13 +164,15 @@ const App = () => {
                 posts={posts}/> 
         </Route>
         <Route path ="/messages">
-            <Messages 
+            { token 
+            ? <div> <Messages 
                 posts={posts}
                 setPosts={setPosts}
                 token={token}
                 setToken={setToken}
                 setUser={setUser}
-                /> 
+                /> </div>
+            : 'You must be a registered User to view Messages' } 
         </Route>  
         <Route path='/profile'>
             <Profile    

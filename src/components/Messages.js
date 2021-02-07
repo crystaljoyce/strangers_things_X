@@ -65,6 +65,7 @@ const handleSubmit = async (event) => {
 // }
 
     return <> 
+    { token ? 
     <div><br/> 
          
          <div> {messages?.map((message, idx) => {
@@ -81,6 +82,7 @@ const handleSubmit = async (event) => {
              </>
          })}</div>
          </div>
+         : 'You must be a registered User to read Messages'} 
          </>
             };
    

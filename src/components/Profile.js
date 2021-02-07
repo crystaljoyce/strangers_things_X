@@ -27,15 +27,16 @@ useEffect(() => {
     
 }, [token])
     
-    return <> 
-        <div> 
+    return <>  { token 
+        ? <div> 
 
             <h3>Current user: </h3> 
             <h5>{user?.username}</h5>
-            <div> Total posts: {user.messages.length}  </div>
-            <div> Total Messages: {user.posts.length}</div>
+            <div> Total posts: {user?.messages?.length}  </div>
+            <div> Total Messages: {user?.posts?.length}</div>
             
         </div>
+        : 'You must be a registered User to view Profile.' }
     </> 
 }
 
