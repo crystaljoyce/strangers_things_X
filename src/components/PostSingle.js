@@ -8,7 +8,7 @@ const PostSingle = (props) => {
     return <div className="PostSingle">
         <h5>{children 
         ? posts.map((post, index) => {
-            return <div> {post.title} </div>
+            return <div key> {post.title} </div>
         })
         : postsList } </h5>
         <div> {children} </div>

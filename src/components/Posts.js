@@ -36,7 +36,6 @@ const Posts = ( props ) => {
 
   const handleSubmit = async (postIdToRespond) => {
   console.log(postIdToRespond)
-  //event.preventDefault();
   const response = await fetch(`https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts/${postIdToRespond}/messages`, {
     method: 'POST',
     headers: {
@@ -65,7 +64,7 @@ const Posts = ( props ) => {
             return <div key={index}>
               <div className="card" >
               <div className="card-body">
-              <Link to="/posts/:id"/><h3 className="card-title">{ post?.title } </h3> <h4>Price: {post?.price} </h4>
+              <Link to="/posts/:id"><h3 className="card-title">{ post?.title } </h3> </Link><h4>Price: {post?.price} </h4> 
               <h4> Offered by user: {post?.author?.username}</h4>
               <div>{ post?.description }</div>
               <div>Delivery Available: {post?.willDeliver === true ? 'Yes' : 'No'}</div>

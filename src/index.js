@@ -17,8 +17,8 @@ import {
     Switch
 } from 'react-router-dom';
 import { fetchUsers } from './api/index';
-// import './bootstrap.css'
-// import './style.css'
+import PostSingle from './components/PostSingle';
+
 
 const BASE_URL = 'https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts'
 
@@ -159,8 +159,8 @@ const App = () => {
                 user={user}/>
            
         </Route>
-        <Route path="/posts/:id">
-            <PostView 
+        <Route exact path="/posts/:id">
+            <PostSingle 
                 posts={posts}/> 
         </Route>
         <Route path ="/messages">
