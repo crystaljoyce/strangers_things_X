@@ -87,7 +87,8 @@ const Posts = ( props ) => {
               onClick={() => handleEdit(post._id)}> Edit </button>
               : '' }
               </div>
-              <div className="input-group">
+              { token && post?.author?.username !== user?.username
+              ? <div className="input-group">
               <button
               type="button"
               className="btn"
@@ -105,6 +106,7 @@ const Posts = ( props ) => {
               </form> 
               : ''} 
               </div>
+              : '' } 
               </div>
               </div>
                 </div> 
