@@ -110,13 +110,20 @@ const App = () => {
 
     return (<div>      
             {user?.username && <div>Hello, {user?.username}! </div>}
-            <nav className="topnav" role="navigation">
-            <Link to="/">Home</Link>
-            <Link to="/posts">Posts</Link>
-            <Link to="/profile">Profile</Link>
-            <Link to="/messages">Messages</Link>
-            <Link to="/login">Login</Link>
+            <ul className="nav justify-content-center">
+            <nav className="nav" role="navigation">
+            <li className='nav item'>
+            <Link to="/" className="nav-link" aria-current="page">Home</Link></li>
+            <li className='nav item'>
+            <Link to="/posts" className="nav-link" aria-current="page">Posts</Link></li>
+            <li className='nav item'>
+            <Link to="/profile" className="nav-link" aria-current="page">Profile</Link></li>
+            <li className='nav item'>
+            <Link to="/messages" className="nav-link" aria-current="page">Messages</Link></li>
+            <li className='nav item'>
+            <Link to="/login" className="nav-link" aria-current="page">Login</Link></li>
             </nav>
+            </ul>
 
         <Route path="/login">
             <AccountForm 

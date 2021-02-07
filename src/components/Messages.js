@@ -28,8 +28,6 @@ const Messages = ( props ) => {
             console.log("user messages : ", data?.data?.messages)
             setMessages(data?.data?.messages)
             
-            const currUser = data?.data.username 
-            console.log('currUser: ',data.data.username)
             setUser(data?.data)
             
         }
