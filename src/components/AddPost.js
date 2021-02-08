@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
-import { 
-  Route, 
-} from 'react-router-dom';
-import { fetchUsers } from '../api';
-import Posts from './Posts';
 
-const AddPost = ({ postList, posts, setPosts, token, username, password }) => {
+const AddPost = ({ posts, setPosts, token }) => {
 const [title, setTitle] = useState('');
 const [description, setDescription] = useState('');
 const [price, setPrice] = useState('');
 const [location, setLocation] = useState('');
 const [willDeliver, setWillDeliver] = useState(false);
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -43,8 +37,7 @@ const [willDeliver, setWillDeliver] = useState(false);
         setWillDeliver(false);
     }
 
-    return <> 
-    
+    return <>  
     <h2> 
       List an item for sale: 
     </h2>
@@ -100,11 +93,9 @@ const [willDeliver, setWillDeliver] = useState(false);
           type="submit"
           className="btn btn-outline-primary">List it!
       </button>
-    </form>
+    </form> 
     </div>
-    
     </>
-
 }
 
 export default AddPost;

@@ -5,18 +5,13 @@ import {
     AddPost,
     AccountForm,
     Messages,
-    EditPost, 
-    Search,
-    PostView,
     Profile,
 } from './components';
 import { 
     BrowserRouter as Router,
     Route, 
     Link,
-    Switch
 } from 'react-router-dom';
-import { fetchUsers } from './api/index';
 import PostSingle from './components/PostSingle';
 
 
@@ -38,17 +33,11 @@ const App = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
-                },
-               
-                }),
+                },}),
                 data = await response.json();
                 console.log('user: ',data?.data)
                 setUser(data?.data)
-                
-                
-                
             }
-    
     useEffect(() => {
         fetchUser()
         console.log('user: ', user)
@@ -72,44 +61,6 @@ const App = () => {
     useEffect(() => {
         fetchPosts()
     }, []);
-
-
-
-    const handleEdit = async (event) => {
-        event.preventDefault(); 
-        const response = await fetch (`https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/posts${postId}`,{
-        method: 'PATCH', 
-        headers: { 
-          'Content-type': "Application/json",
-        },
-        body: { 
-          title, 
-          description,
-          price, 
-          location,
-          willDeliver,
-        }
-      })
-      const data = await response.json(); 
-      console.log('data for update: ', data)
-      if ( data && data.title) {
-        const newPosts = postsList.map( post => {
-          if(post._id === postId) {
-            return data;
-          } else {
-            return post; 
-          }
-        });
-        setPosts(newPosts);
-      setTitle('');
-      setDescription('');
-      setPrice('');
-      setLocation('');
-      setPostId(null);
-      setWillDeliver('');
-    
-      }
-      }
 
     return (<div>      
             {user?.username && <div>Hello, {user?.username}! </div>}
@@ -150,10 +101,6 @@ const App = () => {
                 token={token}/><hr/>
                 </div>
             : '' } 
-            <Search 
-                posts={posts}
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}/>
             <Posts 
                 postsList={posts}
                 token={token}
@@ -161,11 +108,6 @@ const App = () => {
                 content={content}
                 setContent={setContent}
                 user={user}/>
-           
-        </Route>
-        <Route exact path="/posts/:id">
-            <PostSingle 
-                posts={posts}/> 
         </Route>
         <Route path ="/messages">
             { token 
@@ -176,7 +118,7 @@ const App = () => {
                 setToken={setToken}
                 setUser={setUser}
                 /> </div>
-            : 'You must be a registered User to view Messages' } 
+            : 'You must be a Registered User to view Messages' } 
         </Route>  
         <Route path='/profile'>
             <Profile    

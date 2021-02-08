@@ -3,13 +3,12 @@ import React, {useState} from 'react';
 
 const Search = (props ) => {
 
-    const {posts, setPosts, searchTerm, setSearchTerm} = props; 
+    const {posts, searchTerm, setSearchTerm} = props; 
    
     const filteredPosts = posts.filter((post => post?.title?.includes(searchTerm) || post?.description?.includes(searchTerm) || post?.username?.includes(searchTerm)))
     console.log('filtered posts: ',filteredPosts)
 
     const postsToDisplay = searchTerm.length ? filteredPosts : posts;
-
         
     return <div className="input-group mb-3">
         <input 
@@ -21,13 +20,10 @@ const Search = (props ) => {
         placeholder='search the posts'
         onChange={() => setSearchTerm()}
         >
-
         </input>
-        
-        {/* {postsToDisplay.map((pos, index) => {
-            return <div> {pos} </div> 
-        })} */}
-
+        <button> {postsToDisplay.map((pos, index) => {
+            return <div key={index}> {pos.title}  </div> 
+        })} Search</button>
         </div> 
         
 }

@@ -13,7 +13,7 @@ import { user } from './index'
 
 const Posts = ( props ) => {
     const [ setPostId ] = useState(null);
-    const { postsList, postId, posts, setPosts, token, setToken, content, setContent, user } = props; 
+    const { postsList, setPosts, token, content, setContent, user } = props; 
     
 
     const handleDelete = async (postIdToDelete) => {
@@ -76,14 +76,6 @@ const Posts = ( props ) => {
               type='button'
               className='btn'
               onClick={() => handleDelete(post._id)}> Delete </button>
-              : '' }
-              </div>
-              <div>
-              {post?.author?.username === user?.username
-              ? <button
-              type='button'
-              className='btn'
-              onClick={() => handleEdit(post._id)}> Edit </button>
               : '' }
               </div>
               { token && post?.author?.username !== user?.username

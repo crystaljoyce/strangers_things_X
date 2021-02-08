@@ -36,7 +36,7 @@ useEffect(() => {
             <div> Total Messages: {user?.posts?.length}</div>
             
         </div>
-        : 'You must be a registered User to view Profile.' }
+        : 'You must be a Registered User to view Profile.' }
     </> 
 }
 
