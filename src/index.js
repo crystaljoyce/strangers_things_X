@@ -29,6 +29,8 @@ const App = () => {
     const [ posts, setPosts ] = useState([]);
     const [postId, setPostId] = useState(null);
     const [ content, setContent ] = useState([]);
+    const [ searchTerm, setSearchTerm ] = useState('');
+
 
     const fetchUser = async () => {
             const response = await fetch('https://strangers-things.herokuapp.com/api/2010-CPU-RM-WEB-PT/users/me', {
@@ -149,7 +151,9 @@ const App = () => {
                 </div>
             : '' } 
             <Search 
-                posts={posts}/>
+                posts={posts}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}/>
             <Posts 
                 postsList={posts}
                 token={token}

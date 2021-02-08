@@ -11,7 +11,7 @@ import Posts from './Posts';
 
 const Messages = ( props ) => {
 
-    const { token, setUser, posts, user, content, setContent, currUser } = props; 
+    const { token, setUser, posts, user, content, setContent } = props; 
     const [ messages, setMessages ] = useState([]);
 
     const fetchUser = async () => {
@@ -59,10 +59,6 @@ const handleSubmit = async (event) => {
     setContent('');
     
 }
-
-// const response = () => {
-//     <input type='text' placeholder='content' value={content} onChange={(event) => setContent(event.target.value)}> </input>
-// }
 
     return <> 
     { token ? 
